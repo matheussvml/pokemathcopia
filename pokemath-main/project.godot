@@ -24,6 +24,10 @@ config/name="POKEMATH"
 run/main_scene="res://Node2D.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [display]
 
 window/stretch/mode="2d"

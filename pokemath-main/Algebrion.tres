@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://sprites/algebrion.png" type="Texture" id=1]
+[ext_resource path="res://BaseEnemy.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+name = "Algebrion"
+texture = ExtResource( 1 )
+health = 35
+damage = 10

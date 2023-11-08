@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/_92f46fd1-5301-48fb-ae2f-14d33cadd231.jpg" type="Texture" id=1]
+[ext_resource path="res://NESCyrillic.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.564706 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Menu_final" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.999023, 0.586914 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 1.0
+margin_top = 522.0
+margin_right = 1025.0
+margin_bottom = 601.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -462.0
+margin_top = -39.5
+margin_right = 501.0
+margin_bottom = 39.5
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+margin_top = 25.0
+margin_right = 963.0
+margin_bottom = 54.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/line_spacing = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 1
+custom_fonts/font = SubResource( 2 )
+text = "E assim Josiscleuverson se tornou o mestre da matematica achando a Reliquia dos numeros e desvendando os segredos 
+matematicos espalhados pelo mundo"
+align = 1
+valign = 1

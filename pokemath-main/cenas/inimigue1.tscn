@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://npcs/npc2.tres" type="Texture" id=1]
 [ext_resource path="res://cenas/inimigue1.gd" type="Script" id=2]
@@ -8,6 +8,46 @@ height = 0.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 19.375 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "transicao"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 50, 30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -971, -1000 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="inimigue1" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -23,5 +63,16 @@ shape = SubResource( 1 )
 [node name="AreaImpacto" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, 29.625 )
 shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -971.0
+margin_top = -1000.0
+margin_right = -931.0
+margin_bottom = -887.0
+rect_scale = Vector2( 50, 30 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/transicao = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
