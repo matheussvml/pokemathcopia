@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/1-01 Departure From the Hoenn Region.mp3-24886ecd51ab2b03d9d843894104d0f8.mp3str"
+
+[deps]
+
+source_file="res://audio/1-01 Departure From the Hoenn Region.mp3"
+dest_files=[ "res://.import/1-01 Departure From the Hoenn Region.mp3-24886ecd51ab2b03d9d843894104d0f8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
