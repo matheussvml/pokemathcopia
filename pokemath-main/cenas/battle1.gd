@@ -3,6 +3,7 @@ extends Control
 export(Resource) var enemy = null
 
 signal textbox_closed
+
 var respostaCerta = 72
 var current_player_health = 0
 var current_enemy_health = 0
@@ -56,7 +57,9 @@ func _on_Run_pressed():
 	#	return _on_Run_pressed()
 	
 	yield(self, "textbox_closed")
-	get_tree().change_scene("res://cenas/battle.tscn")
+	display_text("Voce fugiu com sucesso!")
+	yield(self, "textbox_closed")
+	get_tree().change_scene("res://cenas/Level1.tscn")
 
 func _on_Defend_pressed():
 	is_defending = true
@@ -94,6 +97,8 @@ func _on_Attack_pressed():
 	display_text("Resolva essa conta matematica para continuar!")
 	yield(self, "textbox_closed")
 	
+	
+	
 	current_enemy_health = max(0, current_enemy_health - Global.damage)
 	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
 	
@@ -110,6 +115,7 @@ func _on_Attack_pressed():
 		$AnimationPlayer.play("enemy_defeated")
 		yield($AnimationPlayer, "animation_finished")
 		yield(get_tree().create_timer(0.35), "timeout")
-		get_tree().change_scene("res://cenas/Level2.tscn")
+		get_tree().change_scene("res://cenas/Level1.tscn")
+		
 	
 	enemy_turn()

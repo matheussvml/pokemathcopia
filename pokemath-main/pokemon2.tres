@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 name = "Onix"
 texture = ExtResource( 2 )
 health = 30
-damage = 10
+damage = 15

@@ -200,6 +200,7 @@ rect_min_size = Vector2( 0, 16 )
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 35.0
+step = 1.0
 value = 35.0
 percent_visible = false
 
@@ -257,6 +258,7 @@ size_flags_vertical = 4
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 15.0
+step = 1.0
 value = 15.0
 percent_visible = false
 

@@ -1,10 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://sprites/dsadadsa.png" type="Texture" id=1]
 [ext_resource path="res://cenas/Level1.gd" type="Script" id=2]
 [ext_resource path="res://cenas/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://cenas/Portal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://cenas/inimigue1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/fund.png" type="Texture" id=6]
+[ext_resource path="res://sprites/pokemon1.png" type="Texture" id=7]
+[ext_resource path="res://NESCyrillic.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://cenas/battle_level1.gd" type="Script" id=9]
+[ext_resource path="res://pokemon1.tres" type="Resource" id=10]
+[ext_resource path="res://audio/1-16-Trainer-Battle_.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/1-58-Fallarbor-Town.wav" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 77.5, 302.75 )
@@ -39,6 +46,134 @@ extents = Vector2( 16.5, 21 )
 [sub_resource type="Animation" id=11]
 resource_name = "transicao"
 length = 2.0
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 12, 54 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0, 1, 0, 1 )
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="DynamicFont" id=15]
+size = 40
+extra_spacing_top = -4
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0, 0, 0, 0.509804 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 64
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 40
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 40
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=23]
+size = 64
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemyContainer/Enemy:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EnemyContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "enemy_damaged"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemyContainer/Enemy:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "enemy_defeated"
+tracks/0/type = "value"
+tracks/0/path = NodePath("EnemyContainer:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "mini_shake"
+length = 0.5
+
+[sub_resource type="Animation" id=28]
+resource_name = "shake"
+length = 0.5
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 2 )
@@ -116,7 +251,7 @@ position = Vector2( 547.5, 380 )
 shape = SubResource( 10 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 337, 577 )
+position = Vector2( 339, 519 )
 
 [node name="inimigue1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 369, 327 )
@@ -127,3 +262,222 @@ position = Vector2( 1037, 166 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/transicao = SubResource( 11 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 370, 399 )
+shape = SubResource( 12 )
+
+[node name="battle" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
+enemy = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="battle"]
+position = Vector2( 512, 303 )
+scale = Vector2( 2.22234, 1.29694 )
+texture = ExtResource( 6 )
+
+[node name="EnemyContainer" type="VBoxContainer" parent="battle"]
+margin_left = 292.0
+margin_top = 52.0
+margin_right = 687.0
+margin_bottom = 278.0
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="battle/EnemyContainer"]
+margin_top = 95.0
+margin_right = 395.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 35 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 14 )
+step = 1.0
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="battle/EnemyContainer/ProgressBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "HP: 25/50"
+align = 1
+valign = 1
+
+[node name="Enemy" type="Sprite" parent="battle/EnemyContainer"]
+position = Vector2( 200, 194 )
+scale = Vector2( 2.26923, 1.97826 )
+texture = ExtResource( 7 )
+
+[node name="PlayerPanel" type="Panel" parent="battle"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = 454.0
+margin_right = 984.0
+margin_bottom = 561.0
+custom_styles/panel = SubResource( 16 )
+
+[node name="PlayerData" type="HBoxContainer" parent="battle/PlayerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="battle/PlayerPanel/PlayerData"]
+margin_top = 14.0
+margin_right = 494.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 17 )
+text = "PLAYER"
+align = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="battle/PlayerPanel/PlayerData"]
+margin_left = 498.0
+margin_top = 15.0
+margin_right = 993.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 45 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 14 )
+step = 1.0
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="battle/PlayerPanel/PlayerData/ProgressBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = -2.0
+margin_bottom = -2.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "HP: 25/50"
+align = 1
+valign = 1
+
+[node name="ActionsPanel" type="Panel" parent="battle"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -21.0
+margin_top = 6.0
+margin_right = 1004.0
+margin_bottom = 113.0
+custom_styles/panel = SubResource( 16 )
+
+[node name="Actions" type="HBoxContainer" parent="battle/ActionsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="Attack" type="Button" parent="battle/ActionsPanel/Actions"]
+margin_right = 323.0
+margin_bottom = 75.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 18 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+enabled_focus_mode = 0
+text = "ATAQUE"
+
+[node name="Defend" type="Button" parent="battle/ActionsPanel/Actions"]
+margin_left = 335.0
+margin_right = 658.0
+margin_bottom = 75.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 18 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+enabled_focus_mode = 0
+text = "ESQUIVAR"
+
+[node name="Run" type="Button" parent="battle/ActionsPanel/Actions"]
+margin_left = 670.0
+margin_right = 993.0
+margin_bottom = 75.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 18 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+enabled_focus_mode = 0
+text = "FUGIR"
+
+[node name="Textbox" type="Panel" parent="battle"]
+margin_left = 6.0
+margin_top = 14.0
+margin_right = 1014.0
+margin_bottom = 134.0
+custom_styles/panel = SubResource( 21 )
+
+[node name="Label" type="Label" parent="battle/Textbox"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_fonts/font = SubResource( 22 )
+text = "UM SLOWKING apareceu!"
+
+[node name="ticker" type="Label" parent="battle/Textbox"]
+margin_left = 975.0
+margin_top = 66.0
+margin_right = 999.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 23 )
+text = ">"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="battle"]
+anims/RESET = SubResource( 24 )
+anims/enemy_damaged = SubResource( 25 )
+anims/enemy_defeated = SubResource( 26 )
+anims/mini_shake = SubResource( 27 )
+anims/shake = SubResource( 28 )
+
+[node name="MusicaFundo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -8.211
+
+[node name="MusicaBatalha" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -6.846
+
+[connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="pressed" from="battle/ActionsPanel/Actions/Attack" to="battle" method="_on_Attack_pressed"]
+[connection signal="pressed" from="battle/ActionsPanel/Actions/Defend" to="battle" method="_on_Defend_pressed"]
+[connection signal="pressed" from="battle/ActionsPanel/Actions/Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="battle/ActionsPanel/Actions/Run" to="battle" method="_on_Run_pressed"]

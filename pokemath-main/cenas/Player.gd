@@ -11,6 +11,7 @@ var dead = false
 
 func _ready():
 	pass
+	#position = Global.last_position
 
 
 func _process(delta):
