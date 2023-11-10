@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Menu_Final1.gd" type="Script" id=1]
+[ext_resource path="res://audio/2-03-Rayquaza_s-Descent_.wav" type="AudioStream" id=2]
+[ext_resource path="res://sprites/_992d60cd-356e-4c6d-832e-f4b6ac0a691e.jpg" type="Texture" id=3]
+[ext_resource path="res://sprites/_f6b57a78-0754-4bb3-ae51-f6164362f990.jpg" type="Texture" id=4]
+[ext_resource path="res://NESCyrillic.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.509804 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.509804 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("992D60Cd-356e-4C6d-832e-f4B6Ac0A691e:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "final"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("992D60Cd-356e-4C6d-832e-f4B6Ac0A691e:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Menu_Final1" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="992D60Cd-356e-4C6d-832e-f4B6Ac0A691e" type="Sprite" parent="."]
+position = Vector2( 515.5, 298.5 )
+scale = Vector2( 0.99707, 0.581055 )
+texture = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="992D60Cd-356e-4C6d-832e-f4B6Ac0A691e"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -663.0
+margin_right = -512.0
+margin_bottom = -512.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="992D60Cd-356e-4C6d-832e-f4B6Ac0A691e/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "E entao josiscleuverson chegou no templo do algebrion, onde ele
+ guarda a tao sonhada reliquia dos numeros, ele sobe e entra no templo"
+align = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1, 0.582031 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Panel" type="Panel" parent="Sprite"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -132.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Sprite/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "assim que josiscleuverson entra ele da de cara com o algebrion e seu
+treinador, aguardando para serem desafiados em troca da reliquia"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/final = SubResource( 6 )
+
+[node name="musicafim" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -15.088

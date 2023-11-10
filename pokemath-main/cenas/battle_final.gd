@@ -9,6 +9,7 @@ var current_enemy_health = 0
 var is_defending = false
 
 func _ready():
+	$MusicaBoss.play()
 	set_health($EnemyContainer/ProgressBar, enemy.health, enemy.health)
 	set_health($PlayerPanel/PlayerData/ProgressBar, Global.current_health, Global.max_health)
 	$EnemyContainer/Enemy.texture = enemy.texture

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/2-03-Rayquaza_s-Descent_.wav-bb1f7673d9bf0a91e78baa50c54c56bd.sample"
+
+[deps]
+
+source_file="res://audio/2-03-Rayquaza_s-Descent_.wav"
+dest_files=[ "res://.import/2-03-Rayquaza_s-Descent_.wav-bb1f7673d9bf0a91e78baa50c54c56bd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

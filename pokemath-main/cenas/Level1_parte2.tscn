@@ -116,10 +116,10 @@ position = Vector2( 547.5, 380 )
 shape = SubResource( 10 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 363, 413 )
+position = Vector2( 993, 211 )
 
 [node name="inimigue1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 369, 327 )
+position = Vector2( 381, 328 )
 scale = Vector2( 2, 2 )
 
 [node name="Portal" parent="." instance=ExtResource( 2 )]
