@@ -1,5 +1,14 @@
 extends Control
 
+
+onready var transition = get_node("Transition/Fill")
+onready var animation = get_node("Transition/Fill/animation")
+
+export (int, "Pixels", "Spot_player", "Spot_centro", "Corte_vertical", "Corte_horizontal" ) var transition_type
+export(float, 2.0) var duration = 1.0
+
+
+
 export(Resource) var enemy = null
 
 signal textbox_closed
@@ -9,6 +18,11 @@ var current_enemy_health = 0
 var is_defending = false
 
 func _ready():
+	$Timer.start()
+	transition.material.set_shader_param("type", transition_type)
+	animation.playback_speed = duration
+	animation.play("transition_out")
+	
 	$MusicaBoss.play()
 	set_health($EnemyContainer/ProgressBar, enemy.health, enemy.health)
 	set_health($PlayerPanel/PlayerData/ProgressBar, Global.current_health, Global.max_health)
@@ -57,7 +71,7 @@ func _on_Run_pressed():
 	#	return _on_Run_pressed()
 	
 	yield(self, "textbox_closed")
-	get_tree().change_scene("res://cenas/battle.tscn")
+	get_tree().change_scene("res://cenas/Final.tscn")
 
 func _on_Defend_pressed():
 	is_defending = true
@@ -114,3 +128,7 @@ func _on_Attack_pressed():
 		get_tree().change_scene("res://cenas/Menu_final.tscn")
 	
 	enemy_turn()
+
+
+func _on_Timer_timeout():
+	$Transition.hide()

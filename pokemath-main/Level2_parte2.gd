@@ -8,4 +8,5 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Enemy2.position.x = -33333
+	$AudioStreamPlayer.play()
+	pass

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Menu_Final1.gd" type="Script" id=1]
 [ext_resource path="res://audio/2-03-Rayquaza_s-Descent_.wav" type="AudioStream" id=2]
 [ext_resource path="res://sprites/_992d60cd-356e-4c6d-832e-f4b6ac0a691e.jpg" type="Texture" id=3]
 [ext_resource path="res://sprites/_f6b57a78-0754-4bb3-ae51-f6164362f990.jpg" type="Texture" id=4]
 [ext_resource path="res://NESCyrillic.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://cenas/Transition.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.509804 )
@@ -81,6 +82,8 @@ tracks/1/keys = {
 
 [node name="Menu_Final1" type="Node2D"]
 script = ExtResource( 1 )
+transition_type = 4
+duration = 0.5
 
 [node name="992D60Cd-356e-4C6d-832e-f4B6Ac0A691e" type="Sprite" parent="."]
 position = Vector2( 515.5, 298.5 )
@@ -136,3 +139,5 @@ anims/final = SubResource( 6 )
 [node name="musicafim" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -15.088
+
+[node name="Transition" parent="." instance=ExtResource( 6 )]
