@@ -4,21 +4,42 @@ signal pressed
 signal textbox_closed
 
 var index = 0
+var pergunta = [
+	"2+2",
+	"4x4",
+	"6x4",
+	"10+10+6",
+	"9+8",
+	"9x2"
+]
+var resposta = [
+	4,
+	16,
+	24,
+	26,
+	17,
+	18,
+]
+#posições
+#posição1 300,367
+#posição2 418,367
+#posição3 535,367
+#posição4 655, 367
+var posicoes = [
+	300,
+	418,
+	535,
+	655
+]
 export(Resource) var enemy = null
 
 var current_player_health = 0
 var current_enemy_health = 0
 
 var is_defending = false
-
+var questao_atual = 0
 func _ready():
-#	var rng = RandomNumberGenerator.new()
-#	var num1 = rng.randi_range(1, 50)
-#	var num2 = rng.randi_range(1, 50)
-#	$"Botoes/25".text = str(num1.randi_range(1, 25))
-#	$"Botoes/35".text = str(num1+num2)
-#	$"Botoes/45".text = str(num1.randi_range(1, 25))
-#	$"Botoes/34".text = str(num2.randi_range(1, 25))
+	#$Options/Option1/Label.text = resposta[questao_atual]
 	set_health($EnemyContainer/ProgressBar, enemy.health, enemy.health)
 	set_health($PlayerPanel/PlayerData/ProgressBar, State.current_health, State.max_health)
 	$EnemyContainer/Enemy.texture = enemy.texture
@@ -26,7 +47,6 @@ func _ready():
 	current_player_health = State.current_health
 	current_enemy_health = enemy.health
 	
-	$Botoes.hide()
 	$Textbox.hide()
 	$ActionsPanel.hide()
 	
@@ -40,9 +60,27 @@ func set_health(progress_bar, health, max_health):
 	progress_bar.get_node("Label").text = "HP: %d/%d" % [health, max_health]
 
 func _input(event):
+	
 	if Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(BUTTON_LEFT) and $Textbox.visible:
 		$Textbox.hide()
 		emit_signal("textbox_closed")
+
+func update_cursor():
+	$seta.position.x = posicoes[index]
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_left"):
+		index -= 1
+		if index < 0:
+			index = 0
+		update_cursor()
+	if Input.is_action_just_pressed("ui_right"):
+		index += 1
+		if index > 3:
+			index = 3
+		update_cursor()
+	
+	
 
 func display_text(text):
 	$Textbox.show()
@@ -94,11 +132,11 @@ func _on_Attack_pressed():
 
 	var posicao = Vector2(x, y)
 	
-	$Botoes.rect_position.x = Vector2(x,y)
-	$"Botoes/25".text = str(int(num1) + randi()%50)
-	$"Botoes/34".text = str(int(num1) + randi()%50)
-	$"Botoes/45".text = str(int(num1) + randi()%50)
-	$"Botoes/35".text = str(int(num1) + int(num2))
+#	$Botoes.rect_position.x = Vector2(x,y)
+	$Options/Option1/Label.text = str(int(num1) + randi()%50)
+	$Options/Option2/Label.text = str(int(num1) + randi()%50)
+	$Options/Option3/Label.text = str(int(num1) + randi()%50)
+	$Options/Option4/Label.text = str(int(num1) + int(num2))
 	display_text("Voce atacou usando o poder das adicoes!")
 	yield(self, "textbox_closed")
 	display_text("Resolva essa adicao para atacar!")
@@ -106,7 +144,7 @@ func _on_Attack_pressed():
 	display_text(gerar_operacoes("+"))
 	display_text("%s + %d" % [int(num1), int(num2)])
 #	yield(self, "textbox_closed")
-	$Botoes.show()
+
 	$ActionsPanel.hide()
 #	current_enemy_health = max(0, current_enemy_health - State.damage)
 #	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
@@ -137,81 +175,14 @@ func _on_Defend_pressed():
 	randomize()
 	var num2 = randi()%50
 	
-	$"Botoes/25".text = str(int(num1) + randi()%50)
-	$"Botoes/34".text = str(int(num1) + randi()%50)
-	$"Botoes/45".text = str(int(num1) + randi()%50)
-	$"Botoes/35".text = str(int(num1) + int(num2))
+	$Options/Option1/Label.text = str(int(num1) + randi()%50)
+	$Options/Option2/Label.text = str(int(num1) + randi()%50)
+	$Options/Option3/Label.text = str(int(num1) + randi()%50)
+	$Options/Option4/Label.text = str(int(num1) + int(num2))
 	
 	display_text("Resolva essa multiplicacao para se esquivar!")
 	yield(self, "textbox_closed")
 	display_text("%s + %d" % [int(num1), int(num2)])
 	$Botoes.show()
-
-
-
-func _on_25_pressed():
-	var rng = RandomNumberGenerator.new()
-	var num1 = rng.randi_range(1, 10)
-	var num2 = rng.randi_range(1, 10)
-	$"Botoes/25".text = str(num1 + 3)
-	$Botoes.hide()
-	display_text("Infelizmente voce errou :(. O correto seria 35")
-	yield(self, "textbox_closed")
-	enemy_turn()
-
-
-func _on_35_pressed():
-	var rng = RandomNumberGenerator.new()
-	var num1 = rng.randi_range(1, 50)
-	var num2 = rng.randi_range(1, 50)
-	$"Botoes/35".text = str(num1+num2)
-	$Botoes.hide()
-	display_text("Voce acertou!! Dano maximo")
-	yield(self, "textbox_closed")
-	
-	current_enemy_health = max(0, current_enemy_health - State.damage)
-	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
-	
-	$AnimationPlayer.play("enemy_damaged")
-	yield($AnimationPlayer, "animation_finished")
-	
-	display_text("Voce deu %d de dano!" % State.damage)
-	yield(self, "textbox_closed")
-	
-	if current_enemy_health == 0:
-		display_text("O %s foi derrotado!" % enemy.name)
-		yield(self, "textbox_closed")
-		$AnimationPlayer.play("enemy_defeated")
-		yield($AnimationPlayer, "animation_finished")
-		yield(get_tree().create_timer(0.35),"timeout")
-		$".".visible = false
-		$"../MusicaBatalha".stop()
-		$"../MusicaFundo".play()
-		$Botoes.hide()
-		
-	enemy_turn()
-	$ActionsPanel.show()
-
-
-func _on_45_pressed():
-	$Botoes.hide()
-	display_text("Infelizmente voce errou :(. O correto seria 35")
-	yield(self, "textbox_closed")
-	enemy_turn()
-	$ActionsPanel.show()
-
-func _on_34_pressed():
-	$Botoes.hide()
-	display_text("Infelizmente voce errou :(. Chegou perto! O correto seria 35")
-	yield(self, "textbox_closed")
-
-	enemy_turn()
-	$ActionsPanel.show()
-
-
-
-
-
-
 
 
