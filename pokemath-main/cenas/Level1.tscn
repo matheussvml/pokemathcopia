@@ -487,6 +487,7 @@ enabled_focus_mode = 0
 text = "FUGIR"
 
 [node name="Textbox" type="Panel" parent="battle"]
+visible = false
 margin_left = 6.0
 margin_top = 14.0
 margin_right = 1014.0

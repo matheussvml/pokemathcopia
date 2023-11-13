@@ -1,5 +1,7 @@
 extends Control
 
+signal sucesso
+signal failed
 signal pressed
 signal textbox_closed
 
@@ -38,6 +40,8 @@ var current_enemy_health = 0
 
 var is_defending = false
 var questao_atual = 0
+var has_answered = false
+
 func _ready():
 	#$Options/Option1/Label.text = resposta[questao_atual]
 	set_health($EnemyContainer/ProgressBar, enemy.health, enemy.health)
@@ -79,7 +83,8 @@ func _process(delta):
 		if index > 3:
 			index = 3
 		update_cursor()
-	
+	if Input.is_action_just_pressed("ui_accept"):
+		check()
 	
 
 func display_text(text):
@@ -92,11 +97,7 @@ func gerar_operacoes(sinal):
 	var num2 = int(rng.randf_range(1, 10))
 	return str(num1) + " " + sinal + " " + str(num2)
 
-func _on_Run_pressed():
-	display_text("Resolva essa multiplicacao para fugir!")
-	yield(self, "textbox_closed")
-	yield(get_tree().create_timer(0.25),"timeout")
-	$".".hide()
+
 
 func enemy_turn():
 	$ActionsPanel.show()
@@ -116,7 +117,12 @@ func enemy_turn():
 		display_text("O %s deu %d de dano!" % [enemy.name, enemy.damage])
 		yield(self, "textbox_closed")
 
-	
+func _on_Run_pressed():
+	display_text("Resolva essa multiplicacao para fugir!")
+	yield(self, "textbox_closed")
+	yield(get_tree().create_timer(0.25),"timeout")
+	$".".hide()
+
 
 func _on_Attack_pressed():
 	var rng = RandomNumberGenerator.new()
@@ -132,7 +138,7 @@ func _on_Attack_pressed():
 
 	var posicao = Vector2(x, y)
 	
-#	$Botoes.rect_position.x = Vector2(x,y)
+#
 	$Options/Option1/Label.text = str(int(num1) + randi()%50)
 	$Options/Option2/Label.text = str(int(num1) + randi()%50)
 	$Options/Option3/Label.text = str(int(num1) + randi()%50)
@@ -165,6 +171,7 @@ func _on_Attack_pressed():
 #		$"../MusicaFundo".play()
 	
 #	enemy_turn()
+ 
 
 
 func _on_Defend_pressed():
@@ -182,7 +189,41 @@ func _on_Defend_pressed():
 	
 	display_text("Resolva essa multiplicacao para se esquivar!")
 	yield(self, "textbox_closed")
-	display_text("%s + %d" % [int(num1), int(num2)])
-	$Botoes.show()
+	display_text("%s x %d" % [int(num1), int(num2)])
 
 
+func get_answer_from_string(string: String):
+	
+	var n1 = int(string.split(" ")[0])
+	var n2 = int(string.split(" ")[2])
+	var sinal = string.split(" ")[1]
+	
+	if sinal == "+":
+		return int(n1) + int(n2)
+	elif sinal == "-":
+		return int(n1) - int(n2)
+	elif sinal == "x":
+		return int(n1) * int(n2)
+	elif sinal == "÷":
+		return n1 / n2
+
+
+func check():
+	var option_text = get_node("Options/Option" + str(index + 1) + "/Label").text
+	var resposta = get_answer_from_string(display_text("2 + 1"))
+	
+	if int(option_text) == resposta:
+		emit_signal("success")
+		has_answered = true
+		display_text("Acertou!!")
+		$Options/Option1/Label.text = ""
+		$Options/Option2/Label.text = ""
+		$Options/Option3/Label.text = ""
+		$Options/Option4/Label.text = ""
+#		$DelayBeforeNext.start()
+		$seta.visible = false
+	else:
+		has_answered = true
+		display_text("Errou :(")
+		enemy_turn()
+		emit_signal("failed")

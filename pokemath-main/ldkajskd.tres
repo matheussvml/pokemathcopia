@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Captura_de_tela_2023-11-06_101243-removebg-preview.png" type="Texture" id=1]
+[ext_resource path="res://BaseEnemy1.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+name = "seta"
+texture = ExtResource( 1 )
+health = 30
+damage = 10
