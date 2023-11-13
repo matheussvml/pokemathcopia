@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://sprites/dsadadsa.png" type="Texture" id=1]
 [ext_resource path="res://cenas/Level1.gd" type="Script" id=2]
@@ -176,6 +176,62 @@ length = 0.5
 resource_name = "shake"
 length = 0.5
 
+[sub_resource type="DynamicFont" id=29]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="DynamicFont" id=32]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="DynamicFont" id=35]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="DynamicFont" id=38]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
 [node name="Level1" type="Node2D"]
 script = ExtResource( 2 )
 duration = 1.5
@@ -272,7 +328,6 @@ position = Vector2( 370, 399 )
 shape = SubResource( 12 )
 
 [node name="battle" type="Control" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 9 )
@@ -471,6 +526,108 @@ anims/enemy_defeated = SubResource( 26 )
 anims/mini_shake = SubResource( 27 )
 anims/shake = SubResource( 28 )
 
+[node name="Botoes" type="HBoxContainer" parent="battle"]
+margin_left = 268.0
+margin_top = 137.0
+margin_right = 732.0
+margin_bottom = 209.0
+mouse_default_cursor_shape = 2
+custom_constants/separation = 12
+alignment = 1
+
+[node name="25" type="Button" parent="battle/Botoes"]
+margin_right = 107.0
+margin_bottom = 72.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 29 )
+custom_styles/hover = SubResource( 30 )
+custom_styles/pressed = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+text = "25"
+
+[node name="35" type="Button" parent="battle/Botoes"]
+margin_left = 119.0
+margin_right = 226.0
+margin_bottom = 72.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 32 )
+custom_styles/hover = SubResource( 33 )
+custom_styles/pressed = SubResource( 33 )
+custom_styles/normal = SubResource( 34 )
+text = "35"
+
+[node name="45" type="Button" parent="battle/Botoes"]
+margin_left = 238.0
+margin_right = 345.0
+margin_bottom = 72.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 35 )
+custom_styles/hover = SubResource( 36 )
+custom_styles/pressed = SubResource( 36 )
+custom_styles/normal = SubResource( 37 )
+text = "45"
+
+[node name="34" type="Button" parent="battle/Botoes"]
+margin_left = 357.0
+margin_right = 464.0
+margin_bottom = 72.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 38 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 39 )
+custom_styles/normal = SubResource( 40 )
+text = "34"
+
+[node name="Botoes2" type="HBoxContainer" parent="battle"]
+visible = false
+margin_left = 268.0
+margin_top = 137.0
+margin_right = 732.0
+margin_bottom = 209.0
+mouse_default_cursor_shape = 2
+custom_constants/separation = 12
+alignment = 1
+
+[node name="errado1" type="Button" parent="battle/Botoes2"]
+margin_left = 190.0
+margin_right = 202.0
+margin_bottom = 72.0
+
+[node name="certo" type="Button" parent="battle/Botoes2"]
+margin_left = 214.0
+margin_right = 226.0
+margin_bottom = 72.0
+
+[node name="errado2" type="Button" parent="battle/Botoes2"]
+margin_left = 238.0
+margin_right = 250.0
+margin_bottom = 72.0
+
+[node name="errado3" type="Button" parent="battle/Botoes2"]
+margin_left = 262.0
+margin_right = 274.0
+margin_bottom = 72.0
+
 [node name="MusicaFundo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -8.211
@@ -480,6 +637,7 @@ stream = ExtResource( 11 )
 volume_db = -6.846
 
 [node name="Transition" parent="." instance=ExtResource( 13 )]
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -489,4 +647,8 @@ wait_time = 1.5
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Defend" to="battle" method="_on_Defend_pressed"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Run" to="." method="_on_Run_pressed"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Run" to="battle" method="_on_Run_pressed"]
+[connection signal="pressed" from="battle/Botoes/25" to="battle" method="_on_25_pressed"]
+[connection signal="pressed" from="battle/Botoes/35" to="battle" method="_on_35_pressed"]
+[connection signal="pressed" from="battle/Botoes/45" to="battle" method="_on_45_pressed"]
+[connection signal="pressed" from="battle/Botoes/34" to="battle" method="_on_34_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

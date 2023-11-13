@@ -13,7 +13,6 @@ func _ready():
 	$MusicaFundo.play()
 	$battle.hide()
 
-
 func _on_Area2D2_body_entered(body):
 	
 	if body is Player:
