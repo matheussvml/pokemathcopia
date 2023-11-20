@@ -575,6 +575,7 @@ custom_fonts/font = SubResource( 32 )
 text = "45"
 
 [node name="seta" type="Sprite" parent="battle"]
+visible = false
 position = Vector2( 655, 367 )
 rotation = 3.14159
 scale = Vector2( 0.2, 0.2 )
