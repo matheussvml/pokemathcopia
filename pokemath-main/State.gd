@@ -5,3 +5,5 @@ var max_health = 35
 
 var damage = 15
 var max_damage = 10
+
+var fugir = false

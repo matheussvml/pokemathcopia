@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://sprites/Game Boy Advance - Pokemon Emerald - Desert Underpass.png" type="Texture" id=1]
 [ext_resource path="res://cenas/Portal2.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://audio/1-58-Fallarbor-Town.wav" type="AudioStream" id=11]
 [ext_resource path="res://pokemon2.tres" type="Resource" id=12]
 [ext_resource path="res://cenas/inimigue2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://sprites/Captura de tela 2023-11-13 074220.png" type="Texture" id=14]
+[ext_resource path="res://sprites/_f6cc98aa-1367-41b4-aa68-bf87d071db19-removebg-preview.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 44.5, 10 )
@@ -159,6 +161,22 @@ length = 0.5
 [sub_resource type="Animation" id=23]
 resource_name = "shake"
 length = 0.5
+
+[sub_resource type="DynamicFont" id=26]
+size = 128
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=27]
+size = 128
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=28]
+size = 128
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=29]
+size = 128
+font_data = ExtResource( 10 )
 
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 14, 31.5 )
@@ -596,12 +614,75 @@ anims/enemy_defeated = SubResource( 21 )
 anims/mini_shake = SubResource( 22 )
 anims/shake = SubResource( 23 )
 
+[node name="Options" type="Node2D" parent="battle"]
+
+[node name="Option1" type="Sprite" parent="battle/Options"]
+position = Vector2( 300, 441 )
+scale = Vector2( 0.285, 0.285 )
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="battle/Options/Option1"]
+margin_left = -66.6667
+margin_top = -49.1228
+margin_right = 61.3333
+margin_bottom = 44.8772
+custom_fonts/font = SubResource( 26 )
+text = "25"
+align = 1
+
+[node name="Option2" type="Sprite" parent="battle/Options"]
+position = Vector2( 418, 441 )
+scale = Vector2( 0.285, 0.285 )
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="battle/Options/Option2"]
+margin_left = -63.1578
+margin_top = -49.1228
+margin_right = 64.8422
+margin_bottom = 44.8772
+custom_fonts/font = SubResource( 27 )
+text = "35"
+align = 1
+
+[node name="Option3" type="Sprite" parent="battle/Options"]
+position = Vector2( 535, 441 )
+scale = Vector2( 0.285, 0.285 )
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="battle/Options/Option3"]
+margin_left = -56.1404
+margin_top = -49.1228
+margin_right = 71.8596
+margin_bottom = 44.8772
+custom_fonts/font = SubResource( 28 )
+text = "34"
+
+[node name="Option4" type="Sprite" parent="battle/Options"]
+position = Vector2( 655, 441 )
+scale = Vector2( 0.285, 0.285 )
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="battle/Options/Option4"]
+margin_left = -66.6667
+margin_top = -45.614
+margin_right = 61.3333
+margin_bottom = 48.386
+custom_fonts/font = SubResource( 29 )
+text = "45"
+
+[node name="seta" type="Sprite" parent="battle"]
+visible = false
+position = Vector2( 655, 367 )
+rotation = 3.14159
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 15 )
+
 [node name="inimigue2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 366, 227 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="cacete" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 367, 281 )
 shape = SubResource( 24 )
 
@@ -617,6 +698,8 @@ shape = SubResource( 25 )
 
 [connection signal="completou" from="." to="." method="_on_Level2_completou"]
 [connection signal="passou" from="Player" to="." method="_on_Player_passou"]
+[connection signal="fimbatalha" from="battle" to="." method="_on_battle_fimbatalha"]
+[connection signal="fugiu" from="battle" to="." method="_on_battle_fugiu"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Attack" to="battle" method="_on_Attack_pressed"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Defend" to="battle" method="_on_Defend_pressed"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Run" to="battle" method="_on_Run_pressed"]

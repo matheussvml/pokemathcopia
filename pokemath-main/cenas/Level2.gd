@@ -27,7 +27,7 @@ func _on_Area2D_body_entered(body):
 		$battle.show()
 		$MusicaFundo.stop()
 		$MusicaBatalha.play()
-		$Area2D/CollisionShape2D.position.x = -23213
+		$Area2D/cacete.position.x = -23213
 
 
 func _on_Area2D2_body_entered(body):
@@ -36,14 +36,8 @@ func _on_Area2D2_body_entered(body):
 		get_tree().change_scene("res://cenas/Level1_parte2.tscn")
 
 
-#func _on_Level2_completou():
-#	pass # Replace with function body.
-
-
-#func _on_Player_passou(body):
-#	if body is Player:
-#		pass
-
-
 func _on_Timer_timeout():
 	$Transition.hide()
+
+
+

@@ -318,6 +318,7 @@ position = Vector2( 370, 399 )
 shape = SubResource( 12 )
 
 [node name="battle" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 9 )
@@ -549,7 +550,7 @@ text = "35"
 align = 1
 
 [node name="Option3" type="Sprite" parent="battle/Options"]
-position = Vector2( 655, 441 )
+position = Vector2( 535, 441 )
 scale = Vector2( 0.285, 0.285 )
 texture = ExtResource( 15 )
 
@@ -562,7 +563,7 @@ custom_fonts/font = SubResource( 31 )
 text = "34"
 
 [node name="Option4" type="Sprite" parent="battle/Options"]
-position = Vector2( 535, 441 )
+position = Vector2( 655, 441 )
 scale = Vector2( 0.285, 0.285 )
 texture = ExtResource( 15 )
 
@@ -596,6 +597,8 @@ visible = false
 wait_time = 1.5
 
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="fimbatalha" from="battle" to="." method="_on_battle_fimbatalha"]
+[connection signal="fugiu" from="battle" to="." method="_on_battle_fugiu"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Attack" to="battle" method="_on_Attack_pressed"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Defend" to="battle" method="_on_Defend_pressed"]
 [connection signal="pressed" from="battle/ActionsPanel/Actions/Run" to="." method="_on_Run_pressed"]

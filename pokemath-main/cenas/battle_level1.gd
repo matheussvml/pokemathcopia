@@ -1,9 +1,13 @@
 extends Control
 
+signal fimbatalha
+signal fugiu
 signal sucesso
 signal failed
 signal pressed
 signal textbox_closed
+
+var defendeu = false
 
 var index = 0
 var pergunta = [
@@ -51,6 +55,8 @@ func _ready():
 	current_player_health = State.current_health
 	current_enemy_health = enemy.health
 	
+	$seta.hide()
+	$Options.hide()
 	$Textbox.hide()
 	$ActionsPanel.hide()
 	
@@ -104,11 +110,14 @@ func enemy_turn():
 	display_text("%s usa o ataque da subtracao em voce!" % enemy.name)
 	yield(self, "textbox_closed")
 	
-	if is_defending:
+	if is_defending == true and defendeu == true:
 		is_defending = false
+		current_player_health = max(0, current_player_health - 0)
+		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
 		$AnimationPlayer.play("mini_shake")
 		display_text("Voce esquivou com sucesso!")
 		yield(self, "textbox_closed")
+		defendeu = false
 	else:
 		current_player_health = max(0, current_player_health - enemy.damage)
 		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
@@ -117,15 +126,51 @@ func enemy_turn():
 		display_text("O %s deu %d de dano!" % [enemy.name, enemy.damage])
 		yield(self, "textbox_closed")
 
+
+
 func _on_Run_pressed():
-	display_text("Resolva essa multiplicacao para fugir!")
-	yield(self, "textbox_closed")
-	yield(get_tree().create_timer(0.25),"timeout")
-	$".".hide()
+	var rng = RandomNumberGenerator.new()
+	randomize()
+	var num1 = randi()%10
+	randomize()
+	var num2 = randi()%10 
+	
+	num2 != 0
+	
+	randomize()
+	var x = randi()%100 + 50
+	randomize()
+	var y = randi()%100 + 50
+
+	var posicao = Vector2(x, y)
+	var verify = num1 / num2 != 0
+#
+	if verify and num1/num2 != 0:
+		$Options/Option1/Label.text = str(int(num1) + randi()%10)
+		$Options/Option2/Label.text = str(int(num1) + randi()%10)
+		$Options/Option3/Label.text = str(int(num1) + randi()%10)
+		$Options/Option4/Label.text = str(int(num1) / int(num2))
+		display_text("Voce escolheu fugir usando a fuga das divisoes!")
+		yield(self, "textbox_closed")
+		display_text("Resolva essa divisao para atacar!")
+		yield(self, "textbox_closed")
+		display_text(gerar_operacoes("/"))
+		display_text("%s / %d" % [int(num1), int(num2)])
+		$Options.show()
+		$seta.show()
+		Global.fugir = true
+		State.fugir = true
+		emit_signal("fugiu")
+	else:
+		return verify 
+#	yield(get_tree().create_timer(0.25),"timeout")
+#	$".".hide()
 
 
 func _on_Attack_pressed():
-
+	emit_signal("fugiu") == false
+	Global.fugir = false
+	State.fugir = false
 	var rng = RandomNumberGenerator.new()
 	randomize()
 	var num1 = randi()%50
@@ -152,47 +197,33 @@ func _on_Attack_pressed():
 	display_text("%s + %d" % [int(num1), int(num2)])
 	$Options.show()
 	$seta.show()
-#	yield(self, "textbox_closed")
-
 	$ActionsPanel.hide()
-#	current_enemy_health = max(0, current_enemy_health - State.damage)
-#	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
-#	$AnimationPlayer.play("enemy_damaged")
-#	yield($AnimationPlayer, "animation_finished")
-	
-#	display_text("Voce deu %d de dano!" % State.damage)
-#	yield(self, "textbox_closed")
-	
-#	if current_enemy_health == 0:
-#		display_text("O %s foi derrotado!" % enemy.name)
-#		yield(self, "textbox_closed")
-#		$AnimationPlayer.play("enemy_defeated")
-#		yield($AnimationPlayer, "animation_finished")
-#		yield(get_tree().create_timer(0.35),"timeout")
-#		$".".visible = false
-#		$"../MusicaBatalha".stop()
-#		$"../MusicaFundo".play()
-	
-#	enemy_turn()
- 
+
 
 
 func _on_Defend_pressed():
 	is_defending = true
+	emit_signal("fugiu") == false
+	Global.fugir = false
+	State.fugir = false
 	var rng = RandomNumberGenerator.new()
 	randomize()
-	var num1 = randi()%50
+	var num1 = randi()%10
 	randomize()
-	var num2 = randi()%50
+	var num2 = randi()%10
 	
-	$Options/Option1/Label.text = str(int(num1) + randi()%50)
-	$Options/Option2/Label.text = str(int(num1) + randi()%50)
-	$Options/Option3/Label.text = str(int(num1) + randi()%50)
-	$Options/Option4/Label.text = str(int(num1) + int(num2))
+	$Options/Option1/Label.text = str(int(num1) + randi()%10)
+	$Options/Option2/Label.text = str(int(num1) + randi()%10)
+	$Options/Option3/Label.text = str(int(num1) + randi()%10)
+	$Options/Option4/Label.text = str(int(num1) * int(num2))
 	
+	defendeu = true
 	display_text("Resolva essa multiplicacao para se esquivar!")
 	yield(self, "textbox_closed")
 	display_text("%s x %d" % [int(num1), int(num2)])
+	$Options.show()
+	$seta.show()
+	
 
 
 func get_answer_from_string(string: String):
@@ -207,34 +238,44 @@ func get_answer_from_string(string: String):
 		return int(n1) - int(n2)
 	elif sinal == "x":
 		return int(n1) * int(n2)
-	elif sinal == "÷":
+	elif sinal == "/":
 		return n1 / n2
 
 
 func check():
 	var option_text = int(get_node("Options/Option" + str(index + 1) + "/Label").text)
 	var resposta = int(get_node("Options/Option4/Label").text)
-	
+	$seta.hide()
+	$Options.hide()
 	if int(option_text) == resposta:
-		current_enemy_health = max(0, current_enemy_health - State.damage)
-		set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
-		$AnimationPlayer.play("enemy_damaged")
-		yield($AnimationPlayer, "animation_finished")
-
-		display_text("Voce deu %d de dano!" % State.damage)
-		yield(self, "textbox_closed")
-
-		if current_enemy_health == 0:
-			display_text("O %s foi derrotado!" % enemy.name)
+		if Global.fugir == true and State.fugir == true:
+			emit_signal("fugiu")
+			display_text("Voce fugiu com sucesso!")
 			yield(self, "textbox_closed")
-			$AnimationPlayer.play("enemy_defeated")
-			yield($AnimationPlayer, "animation_finished")
-			yield(get_tree().create_timer(0.35),"timeout")
-			$".".visible = false
+			yield(get_tree().create_timer(0.25),"timeout")
+			$".".hide()
 			$"../MusicaBatalha".stop()
-			$"../MusicaFundo".play()
-		enemy_turn()
+		elif defendeu == true:
+			enemy_turn()
+		else :
+			current_enemy_health = max(0, current_enemy_health - State.damage)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			$AnimationPlayer.play("enemy_damaged")
+			yield($AnimationPlayer, "animation_finished")
+			display_text("Voce deu %d de dano!" % State.damage)
+			yield(self, "textbox_closed")
+			if current_enemy_health == 0:
+				display_text("O %s foi derrotado!" % enemy.name)
+				yield(self, "textbox_closed")
+				$AnimationPlayer.play("enemy_defeated")
+				yield($AnimationPlayer, "animation_finished")
+				yield(get_tree().create_timer(0.35),"timeout")
+				$".".visible = false
+				$"../MusicaBatalha".stop()
+				$"../MusicaFundo".play()
+				emit_signal("fimbatalha")
+			enemy_turn()
 	else:
-		display_text("errou:(((")
+		display_text("Infelizmente voce errou:(")
 		yield(self, "textbox_closed")
 		enemy_turn()

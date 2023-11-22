@@ -1,17 +1,15 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://AtlasTexture/player_idle.tres" type="Texture" id=1]
 [ext_resource path="res://sprites/fund.png" type="Texture" id=2]
 [ext_resource path="res://sprites/fundo2.png" type="Texture" id=3]
 [ext_resource path="res://sprites/algebrion.png" type="Texture" id=4]
-[ext_resource path="res://cenas/battle_final.gd" type="Script" id=5]
-[ext_resource path="res://Algebrion.tres" type="Resource" id=6]
-[ext_resource path="res://NES.tres" type="DynamicFont" id=7]
-[ext_resource path="res://NESCyrillic.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://audio/2-15-Frontier-Brain-Battle_.wav" type="AudioStream" id=9]
-[ext_resource path="res://cenas/Transition.tscn" type="PackedScene" id=10]
-[ext_resource path="res://sprites/_f6cc98aa-1367-41b4-aa68-bf87d071db19-removebg-preview.png" type="Texture" id=11]
-[ext_resource path="res://sprites/Captura de tela 2023-11-13 074220.png" type="Texture" id=12]
+[ext_resource path="res://NES.tres" type="DynamicFont" id=5]
+[ext_resource path="res://NESCyrillic.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://cenas/battle1.gd" type="Script" id=7]
+[ext_resource path="res://pokemon1.tres" type="Resource" id=8]
+[ext_resource path="res://npcs/npc2.tres" type="Texture" id=9]
+[ext_resource path="res://cenas/soma.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0470588, 1, 0, 1 )
@@ -33,11 +31,11 @@ bg_color = Color( 0, 0, 0, 0.509804 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 64
-font_data = ExtResource( 8 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 64
-font_data = ExtResource( 8 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 1, 1, 1 )
@@ -59,7 +57,7 @@ border_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 32
-font_data = ExtResource( 8 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -116,7 +114,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=12]
 resource_name = "enemy_defeated"
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemyContainer:modulate")
@@ -147,7 +145,7 @@ tracks/0/keys = {
 "values": [ Vector2( -2, -2 ), Vector2( -2, 3 ), Vector2( -1, 2 ), Vector2( 3, -2 ), Vector2( 2, 3 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=14]
 resource_name = "shake"
 length = 0.5
 tracks/0/type = "value"
@@ -163,27 +161,11 @@ tracks/0/keys = {
 "values": [ Vector2( -7, -7 ), Vector2( -5, 6 ), Vector2( 0, 0 ), Vector2( 5, -4 ), Vector2( 4, 5 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=15]
-size = 128
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=16]
-size = 128
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=17]
-size = 128
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=18]
-size = 128
-font_data = ExtResource( 8 )
-
-[node name="battle_final" type="Control"]
+[node name="battle1" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 5 )
-enemy = ExtResource( 6 )
+script = ExtResource( 7 )
+enemy = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 513.75, 300 )
@@ -220,7 +202,6 @@ rect_min_size = Vector2( 0, 16 )
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 35.0
-step = 1.0
 value = 35.0
 percent_visible = false
 
@@ -230,7 +211,7 @@ margin_top = -1.0
 margin_right = 217.0
 margin_bottom = 13.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 5 )
 text = "HP: 10/20"
 align = 1
 valign = 1
@@ -278,7 +259,6 @@ size_flags_vertical = 4
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 15.0
-step = 1.0
 value = 15.0
 percent_visible = false
 
@@ -288,7 +268,7 @@ margin_top = -1.0
 margin_right = 280.0
 margin_bottom = 13.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 7 )
+custom_fonts/font = ExtResource( 5 )
 text = "HP: 10/20"
 align = 1
 valign = 1
@@ -405,85 +385,21 @@ margin_bottom = 40.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 10 )
 anims/enemy_damaged = SubResource( 11 )
-anims/enemy_defeated = SubResource( 14 )
+anims/enemy_defeated = SubResource( 12 )
 anims/mini_shake = SubResource( 13 )
-anims/shake = SubResource( 12 )
+anims/shake = SubResource( 14 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
 
-[node name="MusicaBoss" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 159, 229 )
+scale = Vector2( 8.21875, 9.72368 )
+texture = ExtResource( 9 )
 
-[node name="Transition" parent="." instance=ExtResource( 10 )]
-
-[node name="Timer" type="Timer" parent="."]
-
-[node name="Options" type="Node2D" parent="."]
-
-[node name="Option1" type="Sprite" parent="Options"]
-position = Vector2( 300, 441 )
-scale = Vector2( 0.285, 0.285 )
-texture = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="Options/Option1"]
-margin_left = -66.6667
-margin_top = -49.1228
-margin_right = 61.3333
-margin_bottom = 44.8772
-custom_fonts/font = SubResource( 15 )
-text = "25"
-align = 1
-
-[node name="Option2" type="Sprite" parent="Options"]
-position = Vector2( 418, 441 )
-scale = Vector2( 0.285, 0.285 )
-texture = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="Options/Option2"]
-margin_left = -63.1578
-margin_top = -49.1228
-margin_right = 64.8422
-margin_bottom = 44.8772
-custom_fonts/font = SubResource( 16 )
-text = "35"
-align = 1
-
-[node name="Option3" type="Sprite" parent="Options"]
-position = Vector2( 535, 441 )
-scale = Vector2( 0.285, 0.285 )
-texture = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="Options/Option3"]
-margin_left = -56.1404
-margin_top = -49.1228
-margin_right = 71.8596
-margin_bottom = 44.8772
-custom_fonts/font = SubResource( 17 )
-text = "34"
-
-[node name="Option4" type="Sprite" parent="Options"]
-position = Vector2( 655, 441 )
-scale = Vector2( 0.285, 0.285 )
-texture = ExtResource( 12 )
-
-[node name="Label" type="Label" parent="Options/Option4"]
-margin_left = -66.6667
-margin_top = -45.614
-margin_right = 61.3333
-margin_bottom = 48.386
-custom_fonts/font = SubResource( 18 )
-text = "45"
-
-[node name="seta" type="Sprite" parent="."]
-visible = false
-position = Vector2( 655, 367 )
-rotation = 3.14159
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 11 )
+[node name="Node2D" parent="." instance=ExtResource( 10 )]
 
 [connection signal="pressed" from="ActionsPanel/Actions/Attack" to="." method="_on_Attack_pressed"]
 [connection signal="pressed" from="ActionsPanel/Actions/Defend" to="." method="_on_Defend_pressed"]
 [connection signal="pressed" from="ActionsPanel/Actions/Run" to="." method="_on_Run_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

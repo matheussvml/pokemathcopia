@@ -23,9 +23,21 @@ func _on_Area2D2_body_entered(body):
 		$MusicaFundo.stop()
 		$MusicaBatalha.play()
 		$battle.show()
-		$Area2D2/CollisionShape2D.position.x = -321231
+		
+#		if Global.fugir == true and State.fugir == true:
+#			pass
+#		else:
+#			$Area2D2/CollisionShape2D.position.x = -321231
 
 
 
 func _on_Timer_timeout():
 	$Transition.hide()
+
+
+func _on_battle_fugiu():
+	$Area2D2/CollisionShape2D.position.x = 370
+
+
+func _on_battle_fimbatalha():
+	$Area2D2/CollisionShape2D.position.x = -321231
