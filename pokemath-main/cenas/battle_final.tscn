@@ -3,7 +3,7 @@
 [ext_resource path="res://AtlasTexture/player_idle.tres" type="Texture" id=1]
 [ext_resource path="res://sprites/fund.png" type="Texture" id=2]
 [ext_resource path="res://sprites/fundo2.png" type="Texture" id=3]
-[ext_resource path="res://sprites/algebrion.png" type="Texture" id=4]
+[ext_resource path="res://pixel-art-rayquaza-groudon-kyogre-sprite-kyogre-et-groudon-dragon-swampert-leaf-png-clipart-removebg-preview.png" type="Texture" id=4]
 [ext_resource path="res://cenas/battle_final.gd" type="Script" id=5]
 [ext_resource path="res://Algebrion.tres" type="Resource" id=6]
 [ext_resource path="res://NES.tres" type="DynamicFont" id=7]
@@ -214,7 +214,7 @@ margin_bottom = 47.0
 rect_scale = Vector2( 1.5, 1.5 )
 
 [node name="ProgressBar" type="ProgressBar" parent="EnemyContainer"]
-margin_right = 380.0
+margin_right = 500.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 0, 16 )
 custom_styles/fg = SubResource( 1 )
@@ -237,8 +237,8 @@ valign = 1
 
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
 margin_top = 20.0
-margin_right = 380.0
-margin_bottom = 159.0
+margin_right = 500.0
+margin_bottom = 520.0
 texture = ExtResource( 4 )
 stretch_mode = 4
 

@@ -1,6 +1,6 @@
 extends Control
 
-signal fimbatalha
+signal fimbatalha2
 signal fugiu
 signal sucesso
 signal failed
@@ -273,7 +273,7 @@ func check():
 				$".".visible = false
 				$"../MusicaBatalha".stop()
 				$"../MusicaFundo".play()
-				emit_signal("fimbatalha")
+				emit_signal("fimbatalha2")
 			enemy_turn()
 	else:
 		display_text("Infelizmente voce errou:(")

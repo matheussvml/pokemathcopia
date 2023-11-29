@@ -19,7 +19,7 @@ func _on_Area2D2_body_entered(body):
 		$Timer.start()
 		$Transition.show()
 		animation.play("transition_out")
-		
+
 		$MusicaFundo.stop()
 		$MusicaBatalha.play()
 		$battle.show()
@@ -41,3 +41,4 @@ func _on_battle_fugiu():
 
 func _on_battle_fimbatalha():
 	$Area2D2/CollisionShape2D.position.x = -321231
+	$MusicaFundo.play()

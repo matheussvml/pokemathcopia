@@ -1,6 +1,6 @@
 extends Control
 
-signal fimbatalha
+signal fimbatalha0
 signal fugiu
 signal sucesso
 signal failed
@@ -271,11 +271,13 @@ func check():
 				yield($AnimationPlayer, "animation_finished")
 				yield(get_tree().create_timer(0.35),"timeout")
 				$".".visible = false
-				$"../MusicaBatalha".stop()
-				$"../MusicaFundo".play()
-				emit_signal("fimbatalha")
+				$"../MusicaBoss".stop()
+				$"../Final".play()
+				get_tree().change_scene("res://cenas/Menu_final.tscn")
+				emit_signal("fimbatalha0")
 			enemy_turn()
 	else:
 		display_text("Infelizmente voce errou:(")
 		yield(self, "textbox_closed")
 		enemy_turn()
+

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://sprites/algebrion.png" type="Texture" id=1]
+[ext_resource path="res://pixel-art-rayquaza-groudon-kyogre-sprite-kyogre-et-groudon-dragon-swampert-leaf-png-clipart-removebg-preview.png" type="Texture" id=1]
 [ext_resource path="res://BaseEnemy.gd" type="Script" id=2]
 
 [resource]

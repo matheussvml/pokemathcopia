@@ -1,6 +1,6 @@
 extends Control
 
-signal fimbatalha
+signal fimbatalha3
 signal fugiu
 signal sucesso
 signal failed
@@ -272,10 +272,11 @@ func check():
 				yield(get_tree().create_timer(0.35),"timeout")
 				$".".visible = false
 				$"../MusicaBatalha".stop()
-				$"../MusicaFundo".play()
-				emit_signal("fimbatalha")
+				$"../AudioStreamPlayer".play()
+				emit_signal("fimbatalha3")
 			enemy_turn()
 	else:
 		display_text("Infelizmente voce errou:(")
 		yield(self, "textbox_closed")
 		enemy_turn()
+
